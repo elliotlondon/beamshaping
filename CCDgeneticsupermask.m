@@ -171,7 +171,7 @@ for gen = 2:Generations
     
     % Generate offspring for the rest of the generation
     % Go in steps of two, as each crossover generates two children.
-    for indiv = (EliteNumber + 1):2:Individuals    
+    for indiv = (EliteNumber + 1):Individuals    
         % Select individuals for crossover
         Parent1 = selection(Individuals,Population,SumFitness);
         Parent2 = selection(Individuals,Population,SumFitness);
