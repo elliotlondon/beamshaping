@@ -161,15 +161,17 @@ for gen = 2:Generations
         % Apply Elitism, automatically sending the best individual through
         [~,index] = sortrows([Population.Fitness].');
         Population = Population(index(end:-1:1));
-        clear index
 
         for indiv = 1:EliteNumber
             NewStrings(indiv).Strings = Population(indiv).Strings;
+            
+            Population = Population(index);
         end
     end
     
     % Generate offspring for the rest of the generation
-    for indiv = (EliteNumber + 1):Individuals    
+    % Go in steps of two, as each crossover generates two children.
+    for indiv = (EliteNumber + 1):2:Individuals    
         % Select individuals for crossover
         Parent1 = selection(Individuals,Population,SumFitness);
         Parent2 = selection(Individuals,Population,SumFitness);
